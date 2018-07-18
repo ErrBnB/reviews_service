@@ -4,6 +4,17 @@ const mysqlConfig = require('./config.js');
 const connection = mysql.createConnection(mysqlConfig);
 connection.connect();
 
+const getOnePage = function(params, callback) {
+  
 
-module.exports = {};
+}
+
+
+
+
+
+
+module.exports = {
+  getOnePage
+};
 
