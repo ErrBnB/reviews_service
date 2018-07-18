@@ -1,1 +1,2 @@
-# reviews_service
+# ErrBnB
+HRSF99 FEC Project
