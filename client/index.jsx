@@ -8,17 +8,21 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			review: 0,
-			currentPage: 0
+			currentReview: [],
+			currentPage: 1
 		};
 		this.handleButtonBack = this.handleButtonBack.bind(this);
 		this.handleButtonForward = this.handleButtonForward.bind(this);
+		this.getOnePage = this.getOnePage.bind(this);
 	}
 
 	componentDidMount() {
-		this.handleButtonForward();
-		this.handleButtonForward();
+		this.getOnePage(1);
+		// this.handleButtonForward();
+		// this.handleButtonBack();
 	}
+
+
 
 	handleButtonForward(e) {
 		if (e !== undefined) {
@@ -38,26 +42,23 @@ class App extends React.Component {
 		}
 	}
 
+	getOnePage(param) {
+		const self = this;
+		axios.get(`/api/reviews/${param}`)
+			.then(results => console.log('1', results.data[0]['name']))
+			.then(()=>console.log('ChEcKiNg', self.state.currentReview))
+			.then(results => self.setState({currentReview : results.data[0]['name']}))
+			.then(console.log('2', self.state.currentReview))
+			.catch(error => console.log('FeTcHiNg error: ', error))
+	}
 
-	page0() {
+
+	page1() {
 		return (
 			<div>
 				<h3>Jenn Skywalker</h3>
 				<p>April 2018</p>
 				<p>Execute order 68</p>
-				<h4>Page 0</h4>
-				<input type = "button" id = "0" value = "<" onClick={this.handleButtonBack}></input>
-				<input type = "button" id = "0" value = ">" onClick={this.handleButtonForward}></input>
-			</div>
-		)
-	}
-
-	page1() {
-		return(
-			<div>
-				<h3>Chad Bromance</h3>
-				<p>March 2017</p>
-				<p>This is such a nice room bro</p>
 				<h4>Page 1</h4>
 				<input type = "button" id = "1" value = "<" onClick={this.handleButtonBack}></input>
 				<input type = "button" id = "1" value = ">" onClick={this.handleButtonForward}></input>
@@ -65,12 +66,54 @@ class App extends React.Component {
 		)
 	}
 
+	page2() {
+		return(
+			<div>
+				<h3>Chad Bromance</h3>
+				<p>March 2017</p>
+				<p>This is such a nice room bro</p>
+				<h4>Page 2</h4>
+				<input type = "button" id = "2" value = "<" onClick={this.handleButtonBack}></input>
+				<input type = "button" id = "2" value = ">" onClick={this.handleButtonForward}></input>
+			</div>
+		)
+	}
+
+	page3() {
+		// fetch('http://localhost:3001/api/reviews/1')
+		// .then(res => res.json())
+		// .then(
+		// 	(result) => {
+		// 		console.log(result);
+		// 		this.setState({
+		// 			currentReview : result[0]
+		// 		});
+		// 	},
+		// 	(error) => {
+		// 		console.log(error)
+		// 	}
+		// )
+
+		return(
+			<div>
+				<h4>Page 3</h4>
+				
+				<h1>{this.state.currentReview}</h1>
+
+				<input type = "button" id = "3" value = "<" onClick={this.handleButtonBack}></input>
+				<input type = "button" id = "3" value = ">" onClick={this.handleButtonForward}></input>
+			</div>
+		)		
+	}
+
 
 	render() {
-		if (this.state.currentPage === 0) {
-			return this.page0();
-		} else if (this.state.currentPage === 1) {
+		if (this.state.currentPage === 1) {
 			return this.page1();
+		} else if (this.state.currentPage === 2) {
+			return this.page2();
+		} else if (this.state.currentPage === 3) {
+			return this.page3();
 		}
 	}
 }
