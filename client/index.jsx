@@ -50,6 +50,7 @@ class App extends React.Component {
 	page1() {
 		return (
 			<div>
+				<img src={"https://s3-us-west-1.amazonaws.com/errbnb/1.jpg"} id = "avatar"></img>
 				<h3>Jenn Skywalker</h3>
 				<p>April 2018</p>
 				<p>Execute order 68</p>
@@ -63,6 +64,7 @@ class App extends React.Component {
 	page2() {
 		return(
 			<div>
+				<img src={"https://s3-us-west-1.amazonaws.com/errbnb/2.jpg"} id = "avatar"></img>				
 				<h3>Chad Bromance</h3>
 				<p>March 2017</p>
 				<p>This is such a nice room bro</p>
@@ -89,12 +91,12 @@ class App extends React.Component {
 				__________Checkin: {this.state.currentReview['checkin']}</p>
 				<p>Cleanliness: {this.state.currentReview['cleanliness']}
 				__________Value: {this.state.currentReview['value']}</p>
-				<img src={"https://s3-us-west-1.amazonaws.com/errbnb/1.jpg"} id = "avatar"></img>
+				<img src={"https://s3-us-west-1.amazonaws.com/errbnb/3.jpg"} id = "avatar"></img>
 				<h3 id = 'name'>{this.state.currentReview['name']}</h3>
 				<p id = 'date'>{this.state.currentReview['date']}</p>
 				<p id = 'review'>{this.state.currentReview['review']}</p>
 				<button type="button" aria-busy="false">
-					<span>+ More</span>
+					<span>Read More</span>
 				</button>
 				<h4>Page 3</h4>		
 				<input type = "button" id = "3" value = "<" onClick={this.handleButtonBack}></input>
