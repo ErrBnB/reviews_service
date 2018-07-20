@@ -18,8 +18,6 @@ class App extends React.Component {
 
 	componentDidMount() {
 		this.getOnePage(1);
-		// this.handleButtonForward();
-		// this.handleButtonBack();
 	}
 
 
@@ -43,12 +41,10 @@ class App extends React.Component {
 	}
 
 	getOnePage(param) {
-		const self = this;
 		axios.get(`/api/reviews/${param}`)
-			.then(results => console.log('1', results.data[0]['name']))
-			.then(()=>console.log('ChEcKiNg', self.state.currentReview))
-			.then(results => self.setState({currentReview : results.data[0]['name']}))
-			.then(console.log('2', self.state.currentReview))
+			// .then(results => console.log('1', results.data[0]['name']))
+		  .then(results => this.setState({currentReview : results.data[0]}))
+			// .then(()=>console.log('2', self.state.currentReview))
 			.catch(error => console.log('FeTcHiNg error: ', error))
 	}
 
@@ -80,26 +76,18 @@ class App extends React.Component {
 	}
 
 	page3() {
-		// fetch('http://localhost:3001/api/reviews/1')
-		// .then(res => res.json())
-		// .then(
-		// 	(result) => {
-		// 		console.log(result);
-		// 		this.setState({
-		// 			currentReview : result[0]
-		// 		});
-		// 	},
-		// 	(error) => {
-		// 		console.log(error)
-		// 	}
-		// )
-
 		return(
-			<div>
-				<h4>Page 3</h4>
-				
-				<h1>{this.state.currentReview}</h1>
-
+			<div>	
+				<h3>{this.state.currentReview['name']}</h3>
+				<p>{this.state.currentReview['date']}</p>
+				<p>{this.state.currentReview['review']}</p>
+				<p>accuracy: </p><p>{this.state.currentReview['accuracy']}</p>
+				<p>communication: </p><p>{this.state.currentReview['communication']}</p>
+				<p>cleanliness: </p><p>{this.state.currentReview['cleanliness']}</p>
+				<p>location: </p><p>{this.state.currentReview['location']}</p>
+				<p>checkin: </p><p>{this.state.currentReview['checkin']}</p>
+				<p>value: </p><p>{this.state.currentReview['value']}</p>
+				<h4>Page 3</h4>		
 				<input type = "button" id = "3" value = "<" onClick={this.handleButtonBack}></input>
 				<input type = "button" id = "3" value = ">" onClick={this.handleButtonForward}></input>
 			</div>
