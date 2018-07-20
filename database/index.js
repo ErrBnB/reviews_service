@@ -15,7 +15,6 @@ const getOnePage = function(params, callback) {
     }
   })
 }
-
 // console.log('name: ', faker.name.findName());
 // console.log('date: ', faker.date.month());
 // console.log('review: ', faker.lorem.paragraph());
@@ -30,9 +29,8 @@ const fakeData = function() {
     let singleMonth = month[i % 12]
     return `${singleMonth} ${singleYear}`
   }
-  const queryString = `INSERT INTO user_reviews (name, date, review, accuracy, communication,
-    cleanliness, location, checkin, value) VALUES ((?),(?),(?),(?),(?),(?),(?),(?),(?))`
-  const outputString = [
+  const queryString = 'INSERT INTO user_reviews (name, date, review, accuracy, communication, cleanliness, location, checkin, value) VALUES ((?),(?),(?),(?),(?),(?),(?),(?),(?))'
+  let outputString = [
     output['name'], output['month'], output['review'], output['accuracy'],
     output['communication'], output['cleanliness'], output['location'], output['checkin'],
     output['value']
@@ -47,6 +45,11 @@ const fakeData = function() {
     output['location'] = Math.ceil(Math.random() * 3 + 2);
     output['checkin'] = Math.ceil(Math.random() * 3 + 2);
     output['value'] = Math.ceil(Math.random() * 3 + 2);
+    outputString = [
+      output['name'], output['month'], output['review'], output['accuracy'],
+      output['communication'], output['cleanliness'], output['location'], output['checkin'],
+      output['value']
+    ];
     connection.query(queryString, outputString);
   }
 }

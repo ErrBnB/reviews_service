@@ -43,7 +43,7 @@ class App extends React.Component {
 	getOnePage(param) {
 		axios.get(`/api/reviews/${param}`)
 			// .then(results => console.log('1', results.data[0]['name']))
-		  .then(results => this.setState({currentReview : results.data[0]}))
+		  .then(results => this.setState({currentReview : results.data[4]}))
 			// .then(()=>console.log('2', self.state.currentReview))
 			.catch(error => console.log('FeTcHiNg error: ', error))
 	}
@@ -77,16 +77,23 @@ class App extends React.Component {
 
 	page3() {
 		return(
-			<div>	
+			<div>
+				<h1 id = "mainReview">200 Reviews</h1>
+				<img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Communist_star.svg/250px-Communist_star.svg.png"} id="stars"></img>
+				<img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Communist_star.svg/250px-Communist_star.svg.png"} id="stars"></img>
+				<img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Communist_star.svg/250px-Communist_star.svg.png"} id="stars"></img>
+				<img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Communist_star.svg/250px-Communist_star.svg.png"} id="stars"></img>
+				
+				<h2>Seach Reviews</h2>	
+				<p>Accuracy: {this.state.currentReview['accuracy']}
+				__________Location: {this.state.currentReview['location']}</p>
+				<p>Communication: {this.state.currentReview['communication']}
+				__________Checkin: {this.state.currentReview['checkin']}</p>
+				<p>Cleanliness: {this.state.currentReview['cleanliness']}
+				__________Value: {this.state.currentReview['value']}</p>
 				<h3>{this.state.currentReview['name']}</h3>
 				<p>{this.state.currentReview['date']}</p>
 				<p>{this.state.currentReview['review']}</p>
-				<p>accuracy: </p><p>{this.state.currentReview['accuracy']}</p>
-				<p>communication: </p><p>{this.state.currentReview['communication']}</p>
-				<p>cleanliness: </p><p>{this.state.currentReview['cleanliness']}</p>
-				<p>location: </p><p>{this.state.currentReview['location']}</p>
-				<p>checkin: </p><p>{this.state.currentReview['checkin']}</p>
-				<p>value: </p><p>{this.state.currentReview['value']}</p>
 				<h4>Page 3</h4>		
 				<input type = "button" id = "3" value = "<" onClick={this.handleButtonBack}></input>
 				<input type = "button" id = "3" value = ">" onClick={this.handleButtonForward}></input>
