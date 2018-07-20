@@ -7,3 +7,69 @@
 #mainReview {
   display: inline-block;
 }
+
+#avatar {
+  width: 48px !important;
+  height: 48px !important;
+  position: absolute !important;
+  /* top: 0px !important; */
+  left: 0px !important;
+  border-radius: 24px !important;
+  box-sizing: border-box;
+}
+
+#name {
+  font-weight: 600 !important;
+  margin: 0px !important;
+  word-wrap: break-word !important;
+  font-size: 16px !important;
+  line-height: 22px !important;
+  letter-spacing: normal !important;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+  text-transform: undefined !important;
+  color: #484848 !important;
+  padding-top: undefined !important;
+  padding-bottom: undefined !important;
+  display: inline !important;
+  box-sizing: border-box;
+}
+
+#date {
+  margin: 0px !important;
+  word-wrap: break-word !important;
+  font-size: 14px !important;
+  line-height: 18px !important;
+  letter-spacing: normal !important;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+  text-transform: undefined !important;
+  color: #484848 !important;
+  padding-top: undefined !important;
+  padding-bottom: undefined !important;
+  font-weight: normal !important;
+}
+
+#review {
+  margin: 0px !important;
+  word-wrap: break-word !important;
+  font-size: 16px !important;
+  line-height: 22px !important;
+  letter-spacing: normal !important;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+  text-transform: undefined !important;
+  color: #484848 !important;
+  padding-top: undefined !important;
+  padding-bottom: undefined !important;
+  font-weight: normal !important;
+  display: inline !important;
+  box-sizing: border-box;
+}
+
+#moreButton {
+  box-sizing: border-box;
+  color: #008489 !important;
+  font: inherit !important;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+  cursor: pointer !important;
+  user-select: auto !important;
+  text-align: left !important;
+}

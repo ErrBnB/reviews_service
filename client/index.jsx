@@ -89,9 +89,13 @@ class App extends React.Component {
 				__________Checkin: {this.state.currentReview['checkin']}</p>
 				<p>Cleanliness: {this.state.currentReview['cleanliness']}
 				__________Value: {this.state.currentReview['value']}</p>
-				<h3>{this.state.currentReview['name']}</h3>
-				<p>{this.state.currentReview['date']}</p>
-				<p>{this.state.currentReview['review']}</p>
+				<img src={"https://s3-us-west-1.amazonaws.com/errbnb/1.jpg"} id = "avatar"></img>
+				<h3 id = 'name'>{this.state.currentReview['name']}</h3>
+				<p id = 'date'>{this.state.currentReview['date']}</p>
+				<p id = 'review'>{this.state.currentReview['review']}</p>
+				<button type="button" aria-busy="false">
+					<span>+ More</span>
+				</button>
 				<h4>Page 3</h4>		
 				<input type = "button" id = "3" value = "<" onClick={this.handleButtonBack}></input>
 				<input type = "button" id = "3" value = ">" onClick={this.handleButtonForward}></input>
