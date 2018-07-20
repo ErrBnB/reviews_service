@@ -20,8 +20,6 @@ class App extends React.Component {
 		this.getOnePage(1);
 	}
 
-
-
 	handleButtonForward(e) {
 		if (e !== undefined) {
 			console.log(e.target.id);
