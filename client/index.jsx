@@ -104,8 +104,7 @@ class App extends React.Component {
 			</div>
 		)		
 	}
-
-
+	
 	render() {
 		if (this.state.currentPage === 1) {
 			return this.page1();

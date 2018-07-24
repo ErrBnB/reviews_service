@@ -1,3 +1,5 @@
+import app from './client';
+
 const multiple = require('./mul');
 
 test('the multiple should be 48', () => {
