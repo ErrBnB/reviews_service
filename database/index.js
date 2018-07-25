@@ -5,8 +5,8 @@ const faker = require('faker');
 const connection = mysql.createConnection(mysqlConfig);
 connection.connect();
 
-const getOnePage = function(params, callback) {
-  connection.query('SELECT * FROM user_reviews WHERE (id <= 8)', params, function(error, results) {
+const getAllPage = function(callback) {
+  connection.query('SELECT * FROM user_reviews', function(error, results) {
     if (error) {
       console.log('DaTaBaSe connection error: ', error);
     } else {
@@ -15,10 +15,7 @@ const getOnePage = function(params, callback) {
     }
   })
 }
-// console.log('name: ', faker.name.findName());
-// console.log('date: ', faker.date.month());
-// console.log('review: ', faker.lorem.paragraph());
-// console.log('value: ', Math.ceil(Math.random() * 5));
+
 
 const fakeData = function() {
   let output = {};
@@ -35,16 +32,17 @@ const fakeData = function() {
     output['communication'], output['cleanliness'], output['location'], output['checkin'],
     output['value']
   ];
-  for (let i = 0; i < 20; i++) {
+
+  for (let i = 0; i < 2; i++) {
     output['name'] = faker.name.findName();
     output['month'] = dateGenerator(i);
     output['review'] = faker.lorem.paragraph();
-    output['accuracy'] = Math.ceil(Math.random() * 3 + 2);
-    output['communication'] = Math.ceil(Math.random() * 3 + 2);
-    output['cleanliness'] = Math.ceil(Math.random() * 3 + 2);
-    output['location'] = Math.ceil(Math.random() * 3 + 2);
+    output['accuracy'] = Math.ceil(Math.random() * 1.5 + 3.5);
+    output['communication'] = Math.ceil(Math.random() * 2.2 + 2.8);
+    output['cleanliness'] = Math.ceil(Math.random() * 4 + 1);
+    output['location'] = Math.ceil(Math.random() * 2 + 3);
     output['checkin'] = Math.ceil(Math.random() * 3 + 2);
-    output['value'] = Math.ceil(Math.random() * 3 + 2);
+    output['value'] = Math.ceil(Math.random() * 2.5 + 2.5);
     outputString = [
       output['name'], output['month'], output['review'], output['accuracy'],
       output['communication'], output['cleanliness'], output['location'], output['checkin'],
@@ -58,6 +56,6 @@ fakeData();
 // getOnePage(1, () => {console.log('SoMeThInG')})
 
 module.exports = {
-  getOnePage
+  getAllPage
 };
 
