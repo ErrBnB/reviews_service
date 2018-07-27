@@ -1,7 +1,7 @@
 import React from 'react';
 import 'jest-enzyme';
 import { shallow } from 'enzyme';
-import AverageScore from './AverageScore';
+import Review from './Review';
 
 describe('AverageScore testing', () => {
   // it('AverageScore should includes ', () => {

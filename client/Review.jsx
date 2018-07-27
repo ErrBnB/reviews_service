@@ -4,16 +4,12 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
 class Review extends React.Component {
-	
-
-
-	render() {
-		return (
-			<div>
-				
-			</div>
-		)
-	}
+  render() {
+    return (
+    <div>
+    </div>
+    )
+  }
 }
 
 
