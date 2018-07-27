@@ -94,6 +94,7 @@ class AverageScore extends React.Component {
 	render() {
 		return (
 			<div>
+				<p>show average score</p>
 				<h1 id = "mainStar">{this.props.total.length && this.calculateTotal()} stars</h1>
 				<h1 id = "mainReview">{this.props.total.length} Reviews</h1>
 				<p>Accuracy: {this.props.total.length && this.calculateAccuracy()}

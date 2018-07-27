@@ -68,8 +68,8 @@ class App extends React.Component {
 					<img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Communist_star.svg/250px-Communist_star.svg.png"} id="stars"></img>
 					<img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Communist_star.svg/250px-Communist_star.svg.png"} id="stars"></img>
 					<h2>Search Reviews</h2>
-					<AverageScore total={this.state.totalReview} />
-
+					<AverageScore total = {this.state.totalReview} />
+					<Review total = {this.state.total} />
 					{this.state.currentReview.map((x) => (
 						<div key = {x['name'].toString() + Math.floor(Math.random()*(9999))}>
 							<img src={`https://s3-us-west-1.amazonaws.com/errbnb/${x['id']}.jpg`} id = "avatar"></img>
