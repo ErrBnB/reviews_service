@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "dev:react": "webpack -d --watch",
-    "test": "jest"
+    "test": "jest --forceExit"
   },
   "repository": {
     "type": "git",
@@ -21,14 +21,22 @@
   "homepage": "https://github.com/ErrBnB/ErrBnB#readme",
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.6",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "cbt_tunnels": "^0.9.4",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-15": "^1.0.6",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.10.0",
     "faker": "^4.1.0",
     "jest": "^23.4.1",
+    "jest-enzyme": "^6.0.2",
     "puppeteer": "^1.6.0",
     "react-test-renderer": "^15.6.2",
     "webpack": "^4.16.1",
@@ -45,5 +53,12 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "underscore": "^1.8.3"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "jest-enzyme",
+    "testEnvironment": "enzyme",
+    "testEnvironmentOptions": {
+      "enzymeAdapter": "react15"
+    }
   }
 }
