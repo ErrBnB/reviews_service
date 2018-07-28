@@ -5,12 +5,12 @@ const mysqlConfig = require('./config.js');
 const connection = mysql.createConnection(mysqlConfig);
 connection.connect();
 
-const getAllPage = function (callback) {
-  connection.query('SELECT * FROM user_reviews', (error, results) => {
+const getAllPage = function (params, callback) {
+  connection.query('SELECT * FROM user_reviews WHERE item = (?)', params, (error, results) => {
     if (error) {
       console.log('DaTaBaSe connection error: ', error);
     } else {
-      console.log('ReSuLtS from MySQL: ', results);
+      // console.log('ReSuLtS from MySQL: ', results);
       callback(results);
     }
   })
