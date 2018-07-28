@@ -71,7 +71,7 @@ class App extends React.Component {
           {/* <Review total = {this.state.total} /> */}
           {this.state.currentReview.map((x) => (
             <div key = {x['name'].toString() + Math.floor(Math.random()*9999)}>
-              <img src={`https://s3-us-west-1.amazonaws.com/errbnb/${x['id']}.jpg`} id = "avatar"></img>
+              <img src={`https://s3-us-west-1.amazonaws.com/errbnb/${x['id'].toString().slice(-2)}.jpg`||`https://s3-us-west-1.amazonaws.com/errbnb/${x['id'].toString().slice(-2)}.jpeg`} id = "avatar"></img>
               <h3 id = 'name'>{x['name']}</h3>
               <p id = 'date'>{x['date']}</p>
               <p id = 'review'>{x['review']}</p>
