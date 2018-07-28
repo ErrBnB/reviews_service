@@ -24,7 +24,7 @@ class App extends React.Component {
   }
 
   getOnePage() {
-    axios.get(`/api/reviews/`)
+    axios.get(`/api/reviews/100`)
       // .then(results => console.log('1', results.data[0]['name']))
       .then((results) => {
         this.setState({
