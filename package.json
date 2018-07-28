@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "dev:react": "webpack -d --watch",
-    "test": "jest --forceExit"
+    "test": "jest --forceExit",
+    "data": "node database/dataGenerate.js && mysql -u root <schema.sql && node database/index.js && --forceExit"
   },
   "repository": {
     "type": "git",

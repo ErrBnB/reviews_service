@@ -1,5 +1,5 @@
 const mysql = require('mysql');
-const faker = require('faker');
+const fs = require('fs');
 const mysqlConfig = require('./config.js');
 
 const connection = mysql.createConnection(mysqlConfig);
@@ -16,44 +16,25 @@ const getAllPage = function (callback) {
   })
 }
 
+let output;
 
-const fakeData = () => {
-  let output = {};
-  const month = ['January', 'Feb', 'March', 'April', 'May', 'June', 
-  'July', 'August', 'September', 'October', 'November', 'December'];
-  let dateGenerator = function(i) {
-    let singleYear = 2010 + Math.floor(i / 12);
-    let singleMonth = month[i % 12]
-    return `${singleMonth} ${singleYear}`
+fs.readFile('database/review.csv', 'utf8', (err, data) => {
+  if (err) {
+    console.log('ReAdFiLe error ', err);
+  } else {
+    output = JSON.parse(data);
+    const queryString = 'INSERT INTO user_reviews (item, name, date, review, accuracy, communication, cleanliness, location, checkin, value) VALUES ((?),(?),(?),(?),(?),(?),(?),(?),(?),(?))'
+  
+    for (let i = 0; i < 2000; i += 1) {
+      let outputString = [
+        output[i].item, output[i].name, output[i].month, output[i].review, 
+        output[i].accuracy, output[i].communication, output[i].cleanliness, output[i].location, 
+        output[i].checkin, output[i].value
+      ]
+      connection.query(queryString, outputString);
+    }
   }
-  const queryString = 'INSERT INTO user_reviews (name, date, review, accuracy, communication, cleanliness, location, checkin, value) VALUES ((?),(?),(?),(?),(?),(?),(?),(?),(?))'
-  let outputString = [
-    output.name, output.month, output.review, output.accuracy,
-    output.communication, output.cleanliness, output.location, output.checkin,
-    output.value,
-  ];
-
-  for (let i = 0; i < 2; i += 1) {
-    output.name = faker.name.findName();
-    output.month = dateGenerator(i);
-    output.review = faker.lorem.paragraph();
-    output.accuracy = Math.ceil(Math.random() * 1.5 + 3.5);
-    output.communication = Math.ceil(Math.random() * 2.2 + 2.8);
-    output.cleanliness = Math.ceil(Math.random() * 4 + 1);
-    output.location = Math.ceil(Math.random() * 2 + 3);
-    output.checkin = Math.ceil(Math.random() * 3 + 2);
-    output.value = Math.ceil(Math.random() * 2.5 + 2.5);
-    outputString = [
-      output.name, output.month, output.review, output.accuracy,
-      output.communication, output.cleanliness, output.location, output.checkin,
-      output.value,
-    ];
-    connection.query(queryString, outputString);
-  }
-}
-
-fakeData();
-// getOnePage(1, () => {console.log('SoMeThInG')})
+});
 
 module.exports = {
   getAllPage,
