@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import AverageScore from './AverageScore.jsx';
-
+import Review from './Review.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,14 +13,22 @@ class App extends React.Component {
       currentReview: [],
       currentPage: 1,
       amountReview: 0,
-      totalPage: 0
+      totalPage: 0,
+      hidden: '',
+      buttonTxt: 'Read More'
     };
 
     this.handleButtonBack = this.handleButtonBack.bind(this);
     this.handleButtonForward = this.handleButtonForward.bind(this);
     this.getOnePage = this.getOnePage.bind(this);
-
     this.getOnePage();
+  }
+
+  handleMore(hiddenReview) {
+    this.setState({
+      hidden: hiddenReview,
+      buttonTxt: null
+    })
   }
 
   getOnePage() {
@@ -68,21 +76,25 @@ class App extends React.Component {
           <h2>Search Reviews</h2>
 
           <AverageScore total = {this.state.totalReview} />
-          {/* <Review total = {this.state.total} /> */}
-          {this.state.currentReview.map((x) => (
-            <div key = {x['name'].toString() + Math.floor(Math.random()*9999)}>
-              <img src={`https://s3-us-west-1.amazonaws.com/errbnb/${x['id'].toString().slice(-2)}.jpg`||`https://s3-us-west-1.amazonaws.com/errbnb/${x['id'].toString().slice(-2)}.jpeg`} id = "avatar"></img>
-              <h3 id = 'name'>{x['name']}</h3>
-              <p id = 'date'>{x['date']}</p>
-              <p id = 'review'>{x['review']}</p>
-            </div>
-          ))}
+          <Review buttonTxt = {this.state.buttonTxt} hidden = {this.state.hidden} more = {this.handleMore.bind(this)} total = {this.state.totalReview} current = {this.state.currentReview} />
+          
+          {/* <div>
+            {this.state.currentReview.map((x) => (
+              <div key = {x['name'].toString() + Math.floor(Math.random()*9999)}>
+                <img src={`https://s3-us-west-1.amazonaws.com/errbnb/${x['id'].toString().slice(-2)}.jpg`||`https://s3-us-west-1.amazonaws.com/errbnb/${x['id'].toString().slice(-2)}.jpeg`} id = "avatar"></img>
+                <h3 id = 'name'>{x['name']}</h3>
+                <p id = 'date'>{x['date']}</p>
+                <p id = 'review'>{x['review']}</p>
+                <button type="button" aria-busy="false">
+                  <span>
+                    Read More
+                  </span>
+                </button>
+              </div>
+            ))}
+          </div> */}
 
-          <button type="button" aria-busy="false">
-            <span>
-              Read More
-            </span>
-          </button>
+
           <h4>
             Page {this.state.currentPage}
           </h4>		

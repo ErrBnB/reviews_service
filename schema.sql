@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS user_reviews (
   item int NOT NULL,
   name varchar(50) NOT NULL,
   date varchar(50) NOT NULL,
-  review varchar(400) NOT NULL,
+  review varchar(800) NOT NULL,
   accuracy int NOT NULL,
   communication int NOT NULL,
   cleanliness int NOT NULL,
