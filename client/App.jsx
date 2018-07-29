@@ -14,8 +14,14 @@ class App extends React.Component {
       currentPage: 1,
       amountReview: 0,
       totalPage: 0,
-      hidden: '',
-      buttonTxt: 'Read More'
+      hidden: {},
+      buttonTxt: 'Read More',
+      cssHide: `.moreBtn {
+        display: none;
+      }`,
+      cssShow: `.moreBtn {
+        display: block;
+      }`
     };
 
     this.handleButtonBack = this.handleButtonBack.bind(this);
@@ -24,11 +30,13 @@ class App extends React.Component {
     this.getOnePage();
   }
 
-  handleMore(hiddenReview) {
+  handleMore(hiddenReview, id) {
     this.setState({
-      hidden: hiddenReview,
-      buttonTxt: null
+      hidden: {
+        id : hiddenReview
+      }
     })
+    console.log(this.state.hidden.id)
   }
 
   getOnePage() {
@@ -64,6 +72,8 @@ class App extends React.Component {
     }
   }
 
+
+
   render() {
     return (
       <div>
@@ -73,10 +83,19 @@ class App extends React.Component {
           <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Communist_star.svg/250px-Communist_star.svg.png"} id="stars"></img>
           <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Communist_star.svg/250px-Communist_star.svg.png"} id="stars"></img>
           <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Communist_star.svg/250px-Communist_star.svg.png"} id="stars"></img>
-          <h2>Search Reviews</h2>
+          <h2> Search Reviews</h2>
+          <div className="my-element">
+            <style>
+              {this.state.css}
+            </style>
+            some content
+          </div>
 
           <AverageScore total = {this.state.totalReview} />
-          <Review buttonTxt = {this.state.buttonTxt} hidden = {this.state.hidden} more = {this.handleMore.bind(this)} total = {this.state.totalReview} current = {this.state.currentReview} />
+          <Review expanded = {this.state.expanded} buttonTxt = {this.state.buttonTxt} 
+          hidden = {this.state.hidden} more = {this.handleMore.bind(this)} 
+          total = {this.state.totalReview} current = {this.state.currentReview} 
+          cssHide = {this.state.cssHide} cssShow = {this.state.cssShow}/>
           
           {/* <div>
             {this.state.currentReview.map((x) => (
@@ -93,8 +112,6 @@ class App extends React.Component {
               </div>
             ))}
           </div> */}
-
-
           <h4>
             Page {this.state.currentPage}
           </h4>		
