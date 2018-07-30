@@ -2,6 +2,9 @@ import axios from 'axios';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+// import halfStar from '../public/halfstar.png';
+// import fullstar from '../public/fullstar.png';
+// import nostar from '../public/nostar.png';
 
 class AverageScore extends React.Component {
   constructor(props) {
@@ -22,11 +25,26 @@ class AverageScore extends React.Component {
     const setState = this.setState.bind(this);
   }
 
-  componentWillMount() {
-    // console.log('WillMount', (this.props.total.length) ? true : false )
-    // this.calculateAccuracy();
+  calculateStar(rate) {
+    let output = [];
+    let count = 0;
+    while (count < 5) {
+      if (rate >= 1) {
+        output.push(<img src={"./fullstar.png"} id="stars"></img>);
+        rate -= 1;
+        count += 1;
+      } else if (rate >= 0.5) {
+        output.push(<img src={"./halfstar.png"} id="stars"></img>);
+        rate -= 0.5;
+        count += 1;
+      } else {
+        output.push(<img src={"./nostar.png"} id="stars"></img>);
+        count += 1;
+      }
+    }
+    return output
   }
-  
+
   handleAmount() {
     // console.log('handleAmount', (this.props.total.length) ? true : false  )
     this.setState({
@@ -94,15 +112,16 @@ class AverageScore extends React.Component {
   render() {
     return (
       <div>
-        <p>show average score</p>
-        <h1 id = "mainStar">{this.props.total.length && this.calculateTotal()} stars</h1>
+        <h1 id = "mainStar">{this.props.total.length && this.calculateStar(this.calculateTotal())} stars</h1>
+        
+        
         <h1 id = "mainReview">{this.props.total.length} Reviews</h1>
-        <p>Accuracy: {this.props.total.length && this.calculateAccuracy()}
-          __________Location: {this.props.total.length && this.calculateLocation()}</p>
-        <p>Communication: {this.props.total.length && this.calculateCommunication()}
-        __________Checkin: {this.props.total.length && this.calculateCheckin()}</p>
-        <p>Cleanliness: {this.props.total.length && this.calculateCleanliness()}
-        __________Value: {this.props.total.length && this.calculateValue()}</p>
+        <p>Accuracy: {this.props.total.length && this.calculateStar(this.calculateAccuracy())}
+          Location: {this.props.total.length && this.calculateStar(this.calculateLocation())}</p>
+        <p>Communication: {this.props.total.length && this.calculateStar(this.calculateCommunication())}
+          Checkin: {this.props.total.length && this.calculateStar(this.calculateCheckin())}</p>
+        <p>Cleanliness: {this.props.total.length && this.calculateStar(this.calculateCleanliness())}
+          Value: {this.props.total.length && this.calculateStar(this.calculateValue())}</p>
       </div>
     )
   }

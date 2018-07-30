@@ -14,14 +14,7 @@ class App extends React.Component {
       currentPage: 1,
       amountReview: 0,
       totalPage: 0,
-      hidden: {},
-      buttonTxt: 'Read More',
-      cssHide: `.moreBtn {
-        display: none;
-      }`,
-      cssShow: `.moreBtn {
-        display: block;
-      }`
+      hidden: {}
     };
 
     this.handleButtonBack = this.handleButtonBack.bind(this);
@@ -79,18 +72,7 @@ class App extends React.Component {
       <div>
         {/* <p>{this.state.currentReview[0].review}</p> */}
         <div>
-          <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Communist_star.svg/250px-Communist_star.svg.png"} id="stars"></img>
-          <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Communist_star.svg/250px-Communist_star.svg.png"} id="stars"></img>
-          <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Communist_star.svg/250px-Communist_star.svg.png"} id="stars"></img>
-          <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Communist_star.svg/250px-Communist_star.svg.png"} id="stars"></img>
           <h2> Search Reviews</h2>
-          <div className="my-element">
-            <style>
-              {this.state.css}
-            </style>
-            some content
-          </div>
-
           <AverageScore total = {this.state.totalReview} />
           <Review expanded = {this.state.expanded} buttonTxt = {this.state.buttonTxt} 
           hidden = {this.state.hidden} more = {this.handleMore.bind(this)} 

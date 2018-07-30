@@ -20,7 +20,7 @@ class Review extends React.Component {
             <p id = 'review'> {this.props.hidden.id}</p>
           ) : (
             <button className = "moreBtn" type="button" aria-busy="false" value={hiddenReview} onClick = {() => this.props.more(hiddenReview, id)}>
-              <span>Show more</span>
+              <span>Read more</span>
             </button>
           )}
         </div>
