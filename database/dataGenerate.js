@@ -29,9 +29,7 @@ for (let i = 0; i < 2000; i += 1) {
 	dataSet[i].location = Math.ceil(Math.random() * 2 + 3);
 	dataSet[i].checkin = Math.ceil(Math.random() * 3 + 2);
 	dataSet[i].value = Math.ceil(Math.random() * 2.5 + 2.5);
-
 }
-
 
 fs.writeFile('database/review.csv', JSON.stringify(dataSet), 'utf8', (err) => {
   console.log('WrItEfIlE error ', err);
