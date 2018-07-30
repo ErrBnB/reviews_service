@@ -9,7 +9,7 @@ class Review extends React.Component {
     return (
       <div>
         {this.props.total.length && this.props.current.map((reviewEntry) => (
-          <ReviewItem key = {reviewEntry.name.toString() + Math.floor(Math.random() * 9999)} hidden = {this.props.hidden} more = {this.props.more.bind(this)} reviewEntry= {reviewEntry}/>
+          <ReviewItem key = {reviewEntry.name.toString() + Math.floor(Math.random() * 9999)} reviewEntry= {reviewEntry}/>
         ))}
       </div>
     )

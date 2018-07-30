@@ -14,23 +14,13 @@ class App extends React.Component {
       currentReview: [],
       currentPage: 1,
       amountReview: 0,
-      totalPage: 0,
-      hidden: {}
+      totalPage: 0
     };
 
     this.handleButtonBack = this.handleButtonBack.bind(this);
     this.handleButtonForward = this.handleButtonForward.bind(this);
     this.getOnePage = this.getOnePage.bind(this);
     this.getOnePage();
-  }
-
-  handleMore(hiddenReview, id) {
-    this.setState({
-      hidden: {
-        id : hiddenReview
-      }
-    })
-    console.log(this.state.hidden.id)
   }
 
   getOnePage() {
@@ -155,7 +145,7 @@ class App extends React.Component {
           <h2> Search Reviews</h2>
           <AverageScore total = {this.state.totalReview} />
           <Review expanded = {this.state.expanded} buttonTxt = {this.state.buttonTxt} 
-          hidden = {this.state.hidden} more = {this.handleMore.bind(this)} 
+          hidden = {this.state.hidden}
           total = {this.state.totalReview} current = {this.state.currentReview} 
           />
           <Page currentPage = {this.state.currentPage} totalPage = {this.state.totalPage}

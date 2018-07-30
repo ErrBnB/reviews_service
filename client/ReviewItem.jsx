@@ -5,8 +5,15 @@ import $ from 'jquery';
 
 
 class ReviewItem extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			hidden: false
+		}
+	};
 
-	readMore(review, id) {
+
+	readMore(review) {
 		review = review.split(' ')
 		let shownReview = review.slice(0, 30).join(' ');
 		let hiddenReview;
@@ -16,10 +23,10 @@ class ReviewItem extends React.Component {
 			return (
 				<div>
 					<p id = 'review'>{shownReview}</p>
-					{this.props.hidden.id ? (
-						<p id = 'review'> {this.props.hidden.id}</p>
+					{this.state.hidden ? (
+						<p id = 'review'> {hiddenReview}</p>
 					) : (
-						<button className = "moreBtn" type="button" aria-busy="false" value={hiddenReview} onClick = {() => this.props.more(hiddenReview, id)}>
+						<button className = "moreBtn" type="button" aria-busy="false" value={hiddenReview} onClick = {() => this.setState({hidden: true})}>
 							<span>Read more</span>
 						</button>
 					)}
@@ -37,7 +44,7 @@ class ReviewItem extends React.Component {
 				<img src={`https://s3-us-west-1.amazonaws.com/errbnb/${this.props.reviewEntry.id.toString().slice(-2)}.jpg`} id = "avatar"></img>
 				<h3 id = 'name'>{this.props.reviewEntry.name}</h3>
 				<p id = 'date'>{this.props.reviewEntry.date}</p>
-				{this.readMore(this.props.reviewEntry.review, this.props.reviewEntry.id.toString().slice(-2))}
+				{this.readMore(this.props.reviewEntry.review)}
 			</div>
 		)
 	}
