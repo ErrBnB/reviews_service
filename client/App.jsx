@@ -48,24 +48,51 @@ class App extends React.Component {
   }
 
   handleButtonForward(e) {
+    // console.log(this.state.currentReview);
     if (e !== undefined) {
       this.setState({
-        currentPage: Number(e.target.id) + 1
+        currentPage: Number(e.target.id) + 1,
+        currentReview: this.state.totalReview.slice(this.state.currentPage * 7 + 1, (this.state.currentPage + 1) * 7 + 1),
       });
     }
+    console.log(this.state.currentReview);
+    
   }
 
   handleButtonBack(e) {
     if (e !== undefined) {
       this.setState({
         currentPage: Number(e.target.id) - 1,
-        currentReview: totalReview.slice(8, 15)
+        currentReview: this.state.totalReview.slice((this.state.currentPage - 1) * 7 + 1, this.state.currentPage * 7 + 1),
         // currentReview: totalReview.slice(Number(e.target.id) * 7, Number(e.target.id) * 7 + 7)
       })
     }
   }
 
+  gotoPage(e) {
+    if (e !== undefined) {
+      this.setState({
+        currentPage: Number(e.target.id),
+        currentReview: this.state.totalReview.slice(this.state.currentPage * 7 + 1, (this.state.currentPage + 1) * 7 + 1),
+      })
+    }
+  }
 
+  pageNumPre(e) {
+    output = [];
+    if (e.target.id < 5) {
+      //push prefix buttons
+    }
+    return output;
+  }
+
+  pageNumPost(e) {
+    output = [];
+    if (e.target.id > this.state.totalPage - 4) {
+      //push trailing buttons
+    }
+    return output;
+  }
 
   render() {
     return (
@@ -78,30 +105,14 @@ class App extends React.Component {
           hidden = {this.state.hidden} more = {this.handleMore.bind(this)} 
           total = {this.state.totalReview} current = {this.state.currentReview} 
           cssHide = {this.state.cssHide} cssShow = {this.state.cssShow}/>
-          
-          {/* <div>
-            {this.state.currentReview.map((x) => (
-              <div key = {x['name'].toString() + Math.floor(Math.random()*9999)}>
-                <img src={`https://s3-us-west-1.amazonaws.com/errbnb/${x['id'].toString().slice(-2)}.jpg`||`https://s3-us-west-1.amazonaws.com/errbnb/${x['id'].toString().slice(-2)}.jpeg`} id = "avatar"></img>
-                <h3 id = 'name'>{x['name']}</h3>
-                <p id = 'date'>{x['date']}</p>
-                <p id = 'review'>{x['review']}</p>
-                <button type="button" aria-busy="false">
-                  <span>
-                    Read More
-                  </span>
-                </button>
-              </div>
-            ))}
-          </div> */}
           <h4>
             Page {this.state.currentPage}
           </h4>		
           <h4>
             Total Page: {this.state.totalPage}
           </h4>
-          <input type = "button" id = "1" value = "<" onClick={this.handleButtonBack}></input>
-          <input type = "button" id = "1" value = ">" onClick={this.handleButtonForward}></input>
+          <input type = "button" id = {this.state.currentPage} value = "<" onClick={this.handleButtonBack}></input>
+          <input type = "button" id = {this.state.currentPage} value = ">" onClick={this.handleButtonForward}></input>
         </div>
       </div>
     );

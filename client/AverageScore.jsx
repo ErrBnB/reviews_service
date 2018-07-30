@@ -108,13 +108,10 @@ class AverageScore extends React.Component {
     return Math.round(x * 2)/2;
   }
 
-
   render() {
     return (
       <div>
         <h1 id = "mainStar">{this.props.total.length && this.calculateStar(this.calculateTotal())} stars</h1>
-        
-        
         <h1 id = "mainReview">{this.props.total.length} Reviews</h1>
         <p>Accuracy: {this.props.total.length && this.calculateStar(this.calculateAccuracy())}
           Location: {this.props.total.length && this.calculateStar(this.calculateLocation())}</p>
