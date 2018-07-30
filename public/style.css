@@ -76,3 +76,36 @@
   user-select: auto !important;
   text-align: left !important;
 }
+
+.currentBtn {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 16px !important;
+  line-height: 32px !important;
+  text-align: center !important;
+  background-color: #008489 !important;
+  color: #ffffff !important;
+  display: inline-block;
+}
+
+.changePageBtn {
+  height: 1em;
+  width: 1em;
+  display: block;
+  fill: currentcolor;
+  overflow: hidden;
+  box-sizing: border-box;
+  background-color: transparent !important;
+  border-color: #008489 !important;
+  color: #008489 !important;
+  border: 1px solid !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 16px !important;
+  position: relative !important;
+  display: inline-block;
+}
+
+.omit {
+  display: inline-block;
+}

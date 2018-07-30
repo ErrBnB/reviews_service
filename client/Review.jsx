@@ -35,7 +35,7 @@ class Review extends React.Component {
     return (
       <div>
         {this.props.total.length && this.props.current.map((x) => (
-          <div key = {x.name.toString() + Math.floor(Math.random()*999)}>
+          <div key = {x.name.toString() + Math.floor(Math.random()*9999)}>
             <img src={`https://s3-us-west-1.amazonaws.com/errbnb/${x.id.toString().slice(-2)}.jpg`} id = "avatar"></img>
             <h3 id = 'name'>{x.name}</h3>
             <p id = 'date'>{x.date}</p>

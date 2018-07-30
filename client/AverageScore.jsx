@@ -30,15 +30,15 @@ class AverageScore extends React.Component {
     let count = 0;
     while (count < 5) {
       if (rate >= 1) {
-        output.push(<img src={"./fullstar.png"} id="stars"></img>);
+        output.push(<img src={"./fullstar.png"} id="stars" key = {Math.floor(Math.random() * 9999)}></img>);
         rate -= 1;
         count += 1;
       } else if (rate >= 0.5) {
-        output.push(<img src={"./halfstar.png"} id="stars"></img>);
+        output.push(<img src={"./halfstar.png"} id="stars" key = {Math.floor(Math.random() * 9999)}></img>);
         rate -= 0.5;
         count += 1;
       } else {
-        output.push(<img src={"./nostar.png"} id="stars"></img>);
+        output.push(<img src={"./nostar.png"} id="stars" key = {Math.floor(Math.random() * 9999)}></img>);
         count += 1;
       }
     }

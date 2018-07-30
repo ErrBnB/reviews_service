@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import AverageScore from './AverageScore.jsx';
 import Review from './Review.jsx';
+import Page from './Page.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -48,10 +49,11 @@ class App extends React.Component {
   }
 
   handleButtonForward(e) {
+    console.log(e);
     // console.log(this.state.currentReview);
-    if (e !== undefined) {
+    if (e !== undefined && e < this.state.totalPage) {
       this.setState({
-        currentPage: Number(e.target.id) + 1,
+        currentPage: Number(e) + 1,
         currentReview: this.state.totalReview.slice(this.state.currentPage * 7 + 1, (this.state.currentPage + 1) * 7 + 1),
       });
     }
@@ -60,9 +62,9 @@ class App extends React.Component {
   }
 
   handleButtonBack(e) {
-    if (e !== undefined) {
+    if (e !== undefined && e > 0) {
       this.setState({
-        currentPage: Number(e.target.id) - 1,
+        currentPage: Number(e) - 1,
         currentReview: this.state.totalReview.slice((this.state.currentPage - 1) * 7 + 1, this.state.currentPage * 7 + 1),
         // currentReview: totalReview.slice(Number(e.target.id) * 7, Number(e.target.id) * 7 + 7)
       })
@@ -72,24 +74,77 @@ class App extends React.Component {
   gotoPage(e) {
     if (e !== undefined) {
       this.setState({
-        currentPage: Number(e.target.id),
-        currentReview: this.state.totalReview.slice(this.state.currentPage * 7 + 1, (this.state.currentPage + 1) * 7 + 1),
+        currentPage: Number(e),
+        currentReview: this.state.totalReview.slice((e - 1 ) * 7 + 1, (e) * 7 + 1),
       })
     }
   }
 
   pageNumPre(e) {
-    output = [];
-    if (e.target.id < 5) {
+    let output = [];
+    if (e == 1) {
+      output.push()
       //push prefix buttons
+    } else {
+      output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = "<" onClick={()=>this.handleButtonBack(this.state.currentPage)}></input>);
+      if (e == 2) {
+        output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = "1" onClick={()=>this.gotoPage(1)}></input>)
+      } else if (e == 3) {
+        output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = "1" onClick={()=>this.gotoPage(1)}></input>)
+        output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = "2" onClick={()=>this.gotoPage(2)}></input>)
+      } else if (e == 4) {
+        output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = "1" onClick={()=>this.gotoPage(1)}></input>)
+        output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = "2" onClick={()=>this.gotoPage(2)}></input>)
+        output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = "3" onClick={()=>this.gotoPage(3)}></input>)
+      } else if (e == this.state.totalPage) {
+        output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = "1" onClick={()=>this.gotoPage(1)}></input>)
+        output.push(<p className = 'omit'>...</p>)
+        output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = {this.state.currentPage - 2} onClick={()=>this.gotoPage(this.state.currentPage - 2)}></input>)
+        output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = {this.state.currentPage - 1} onClick={()=>this.gotoPage(this.state.currentPage - 1)}></input>)
+      } else {
+        output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = "1" onClick={()=>this.gotoPage(1)}></input>)
+        output.push(<p className = 'omit'>...</p>)
+        output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = {this.state.currentPage - 1} onClick={()=>this.gotoPage(this.state.currentPage - 1)}></input>)
+      }
     }
     return output;
   }
 
   pageNumPost(e) {
-    output = [];
-    if (e.target.id > this.state.totalPage - 4) {
-      //push trailing buttons
+    let output = [];
+    var totalPage = Number(this.state.totalPage);
+    console.log(totalPage);
+    if (e == this.state.totalPage) {
+      output.push()
+      //push prefix buttons
+    } else if (e == (totalPage - 1)) {
+      output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = {this.state.currentPage + 1} onClick={()=>this.gotoPage(this.state.currentPage + 1)}></input>)
+      output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = ">" onClick={()=>this.handleButtonForward(this.state.currentPage)}></input>);
+      
+    } else if (e == (totalPage - 2)) {
+      output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = {this.state.currentPage + 1} onClick={()=>this.gotoPage(this.state.currentPage + 1)}></input>)
+      output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = {this.state.currentPage + 2} onClick={()=>this.gotoPage(this.state.currentPage + 2)}></input>)
+      output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = ">" onClick={()=>this.handleButtonForward(this.state.currentPage)}></input>);
+      
+    } else if (e == (totalPage - 3)) {
+      output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = {this.state.currentPage + 1} onClick={()=>this.gotoPage(this.state.currentPage + 1)}></input>)
+      output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = {this.state.currentPage + 2} onClick={()=>this.gotoPage(this.state.currentPage + 2)}></input>)
+      output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = {this.state.currentPage + 3} onClick={()=>this.gotoPage(this.state.currentPage + 3)}></input>)
+      output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = ">" onClick={()=>this.handleButtonForward(this.state.currentPage)}></input>);
+      
+    } else if (e == 1) {
+      output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = "2" onClick={()=>this.gotoPage(2)}></input>)
+      output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = "3" onClick={()=>this.gotoPage(3)}></input>)
+      output.push(<p className = 'omit'>...</p>)
+      output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = {this.state.totalPage} onClick={()=>this.gotoPage(this.state.totalPage)}></input>)
+      output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = ">" onClick={()=>this.handleButtonForward(this.state.currentPage)}></input>);
+      
+    } else {
+      output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = {this.state.currentPage + 1} onClick={()=>this.gotoPage(this.state.currentPage + 1)}></input>)
+      output.push(<p className = 'omit'>...</p>)
+      output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = {this.state.totalPage} onClick={()=>this.gotoPage(this.state.totalPage)}></input>)
+      output.push(<input type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = ">" onClick={()=>this.handleButtonForward(this.state.currentPage)}></input>);
+      
     }
     return output;
   }
@@ -104,15 +159,11 @@ class App extends React.Component {
           <Review expanded = {this.state.expanded} buttonTxt = {this.state.buttonTxt} 
           hidden = {this.state.hidden} more = {this.handleMore.bind(this)} 
           total = {this.state.totalReview} current = {this.state.currentReview} 
-          cssHide = {this.state.cssHide} cssShow = {this.state.cssShow}/>
-          <h4>
-            Page {this.state.currentPage}
-          </h4>		
-          <h4>
-            Total Page: {this.state.totalPage}
-          </h4>
-          <input type = "button" id = {this.state.currentPage} value = "<" onClick={this.handleButtonBack}></input>
-          <input type = "button" id = {this.state.currentPage} value = ">" onClick={this.handleButtonForward}></input>
+          />
+          <Page currentPage = {this.state.currentPage} totalPage = {this.state.totalPage}
+          pageNumPost = {this.pageNumPost.bind(this)} pageNumPre = {this.pageNumPre.bind(this)} 
+          gotoPage = {this.gotoPage.bind(this)} 
+          handleButtonBack = {this.handleButtonBack.bind(this)} handleButtonForward = {this.handleButtonForward.bind(this)}/>
         </div>
       </div>
     );
