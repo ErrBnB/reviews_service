@@ -9,10 +9,15 @@ class Report extends React.Component {
 		this.state = {
 			modalContent : {
 				margin: 'auto',
-				padding: '20px',
 				border: '1px solid #888',
 				width: '80%',
-				backgroundImage: "Yellow"
+				backgroundColor: "rgb(255, 255, 255)",
+				boxSizing: 'borderBox',
+				padding: '32px',
+				fontFamily: 'Circular,"Helvetica Neue",Helvetica,Arial,sans-serif',
+    		fontSize: '14px',
+    		lineHeight: 1.43,
+				color: '#484848'
 			},
 			modal : {
 				display: 'none', /* Hidden by default */
@@ -25,16 +30,26 @@ class Report extends React.Component {
 			},
 			close : {
 				color: '#aaaaaa',
-				float: 'right'
-			}
+				float: 'right',
+				cursor: 'pointer',
+			},
+			modal2 : {
+				display: 'none', /* Hidden by default */
+				position: 'fixed', /* Stay in place */
+				left: 0,
+				top: 0,
+				width: '100%', /* Full width */
+				height: '100%', /* Full height */
+				overflow: 'auto', /* Enable scroll if needed */
+			},
 		}	
 		this.popUp = this.popUp.bind(this);
 		this.close = this.close.bind(this);
 		this.submit = this.submit.bind(this);
+		this.closeSubmit = this.closeSubmit.bind(this);
 	}
 
 	popUp(event) {
-		console.log('PoPpInG!');
 		this.setState({
 			modal : {
 				display : 'block'
@@ -54,6 +69,17 @@ class Report extends React.Component {
 		this.setState({
 			modal : {
 				display : 'none'
+			},
+			modal2 : {
+				display : 'block'
+			}
+		})
+	}
+
+	closeSubmit() {
+		this.setState({
+			modal2 : {
+				display : 'none'
 			}
 		})
 	}
@@ -62,30 +88,35 @@ class Report extends React.Component {
 
   render() {
     return (
-    //   <div className = 'reviewName'>
-    //     {/* <button><img src="./reportBtn.png" alt="my image" onClick={this.popUp} /></button> */}
-		// 		<button id="myBtn" >Open Modal</button>
-		// 		<div id="myModal" onClick={this.popUp} className="modal">
-		// 			<div className="modal-content">
-		// 				<span className="close">&times;</span>
-		// 				<p>Some text in the Modal..</p>
-		// 			</div>
-		// 		</div>
-		// 	</div>
 			<div>
-				{/* <p style={this.state.modal}>Get started with inline style</p> */}
 				<button id="myBtn" ><img src="./reportBtn.png" alt="my image" onClick = {this.popUp}/></button>
 				<div id="myModal" className = "modal" style = {this.state.modal}>
 					<div className = "modalContent" style = {this.state.modalContent}>
 						<span className = "close" style = {this.state.close} onClick = {this.close}>&times;</span>
 						<div>
 							<h3>Do you want to anonymously report this review?</h3>
-							<p>If so, please choose one of the following reasons. </p>
-							<input type="checkbox" id="myCheck"/>
-							<p>Inappropriate content</p>
+							<p style = {{display : 'inline'}}>If so, please choose one of the following reasons. </p>
+							<p><a href="https://www.airbnb.com/help/article/4">Learn more</a></p>
+							<input type="radio" id="myCheck"/>
+							<p style = {{display : 'inline'}}>Inappropriate content</p>
 							<p>This review contains violent, graphic, promotional, or otherwise offensive content.</p>
+							<input type="radio" id="myCheck"/>
+							<p style = {{display : 'inline'}}>Dishonest or hateful content</p>
+							<p>This review is purposefully malicious and assaulting.</p>
+							<input type="radio" id="myCheck"/>
+							<p style = {{display : 'inline'}}>Fake content</p>
+							<p>This review contains false information or may be fake.</p>
 						</div>
 						<span className = "submit" onClick = {this.submit}>Submit</span>
+					</div>
+				</div>
+				<div id="myModal" className = "modal2" style = {this.state.modal2}>
+					<div className = "modalContent" style = {this.state.modalContent}>
+						<span className = "close" style = {this.state.close} onClick = {this.closeSubmit}>&times;</span>
+						<div>
+							<h3>Thank you for the submision</h3>
+							<p style = {{display : 'inline'}}>Please enjoy our site</p>
+						</div>
 					</div>
 				</div>
 			</div>
