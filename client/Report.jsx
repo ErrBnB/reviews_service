@@ -7,42 +7,46 @@ class Report extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			divStyle : {
-				margin: '40px',
-				border: '5px solid pink'
+			modalContent : {
+				margin: 'auto',
+				padding: '20px',
+				border: '1px solid #888',
+				width: '80%',
+				backgroundImage: "Yellow"
 			},
 			modal : {
-				display: 'block', /* Hidden by default */
+				display: 'none', /* Hidden by default */
 				position: 'fixed', /* Stay in place */
 				left: 0,
 				top: 0,
 				width: '100%', /* Full width */
 				height: '100%', /* Full height */
 				overflow: 'auto', /* Enable scroll if needed */
+			},
+			close : {
+				color: '#aaaaaa',
+				float: 'right'
 			}
 		}	
 		this.popUp = this.popUp.bind(this);
+		this.close = this.close.bind(this);
 	}
 
 	popUp(event) {
 		console.log('PoPpInG!');
-		console.log(event.target.id)
-		if (event.target.id == 'myBtn') {
-			if (this.state.modal.display === 'none') {
-				this.setState({
-					modal : {
-						display : 'block'
-					}
-				})
-			} else {
-				this.setState({
-					modal : {
-						display : 'none'
-					}
-				})	
+		this.setState({
+			modal : {
+				display : 'block'
 			}
-			console.log('???', this.state.pStyle);	
-		}
+		})
+	}
+
+	close() {
+		this.setState({
+			modal : {
+				display : 'none'
+			}
+		})
 	}
 
 
@@ -58,9 +62,21 @@ class Report extends React.Component {
 		// 			</div>
 		// 		</div>
 		// 	</div>
-			<div style={this.state.divStyle}>
-				<p style={this.state.modal}>Get started with inline style</p>
-				<button id="myBtn" onClick = {this.popUp}>Open Modal</button>
+			<div>
+				{/* <p style={this.state.modal}>Get started with inline style</p> */}
+				<button id="myBtn" ><img src="./reportBtn.png" alt="my image" onClick = {this.popUp}/></button>
+				<div id="myModal" className = "modal" style = {this.state.modal}>
+					<div className = "modalContent" style = {this.state.modalContent}>
+						<span className = "close" style = {this.state.close} onClick = {this.close}>&times;</span>
+						<div>
+							<h3>Do you want to anonymously report this review?</h3>
+							<p>If so, please choose one of the following reasons. </p>
+							<input type="checkbox" id="myCheck"/>
+							<p>Inappropriate content</p>
+							<p>This review contains violent, graphic, promotional, or otherwise offensive content.</p>
+						</div>
+					</div>
+				</div>
 			</div>
 		)
   }
