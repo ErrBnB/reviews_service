@@ -1,10 +1,11 @@
+import Page from './Page.jsx';
 import axios from 'axios';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import AverageScore from './AverageScore.jsx';
 import Review from './Review.jsx';
-import Page from './Page.jsx';
+
 
 class App extends React.Component {
   constructor(props) {

@@ -1,3 +1,4 @@
+import Page from './Page.jsx';
 import axios from 'axios';
 import React from 'react';
 import ReactDOM from 'react-dom';

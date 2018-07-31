@@ -1,7 +1,9 @@
+import Popup from 'reactjs-popup';
 import axios from 'axios';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import Report from './Report.jsx';
 
 
 class ReviewItem extends React.Component {
@@ -42,7 +44,8 @@ class ReviewItem extends React.Component {
 		return (
 			<div>  
 				<img src={`https://s3-us-west-1.amazonaws.com/errbnb/${this.props.reviewEntry.id.toString().slice(-2)}.jpg`} id = "avatar"></img>
-				<h3 id = 'name'>{this.props.reviewEntry.name}</h3>
+				<h3 id = 'name' className = 'reviewName'>{this.props.reviewEntry.name}</h3>
+				<Report />
 				<p id = 'date'>{this.props.reviewEntry.date}</p>
 				{this.readMore(this.props.reviewEntry.review)}
 			</div>
