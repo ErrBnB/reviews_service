@@ -30,6 +30,7 @@ class Report extends React.Component {
 		}	
 		this.popUp = this.popUp.bind(this);
 		this.close = this.close.bind(this);
+		this.submit = this.submit.bind(this);
 	}
 
 	popUp(event) {
@@ -48,6 +49,15 @@ class Report extends React.Component {
 			}
 		})
 	}
+
+	submit() {
+		this.setState({
+			modal : {
+				display : 'none'
+			}
+		})
+	}
+
 
 
   render() {
@@ -75,6 +85,7 @@ class Report extends React.Component {
 							<p>Inappropriate content</p>
 							<p>This review contains violent, graphic, promotional, or otherwise offensive content.</p>
 						</div>
+						<span className = "submit" onClick = {this.submit}>Submit</span>
 					</div>
 				</div>
 			</div>
