@@ -11,14 +11,14 @@ class AverageScore extends React.Component {
     super(props);
 
     this.state = {
-      amountReview: 0,
-      overallAccuracy : 0,
-      overallCommunication : 0,
-      overallCleanliness : 0,
-      overallLocation : 0,
-      overallCheckin : 0,
-      overallValue : 0,
-      overallScore: 0	
+      amountReview: 'Not Available',
+      overallAccuracy : 'Not Available',
+      overallCommunication : 'Not Available',
+      overallCleanliness : 'Not Available',
+      overallLocation : 'Not Available',
+      overallCheckin : 'Not Available',
+      overallValue : 'Not Available',
+      overallScore: 'Not Available'	
     };	
     this.handleAmount = this.handleAmount.bind(this);
     this.calculateAccuracy = this.calculateAccuracy.bind(this);
@@ -26,6 +26,7 @@ class AverageScore extends React.Component {
   }
 
   calculateStar(rate) {
+    console.log('CaLcUlAtE star ', rate)
     let output = [];
     let count = 0;
     while (count < 5) {
@@ -42,6 +43,13 @@ class AverageScore extends React.Component {
         count += 1;
       }
     }
+    // if (rate.length === 0) {
+    //   output.push(<img src={"./nostar.png"} id="stars" key = {Math.floor(Math.random() * 9999)}></img>);
+    //   output.push(<img src={"./nostar.png"} id="stars" key = {Math.floor(Math.random() * 9999)}></img>);
+    //   output.push(<img src={"./nostar.png"} id="stars" key = {Math.floor(Math.random() * 9999)}></img>);
+    //   output.push(<img src={"./nostar.png"} id="stars" key = {Math.floor(Math.random() * 9999)}></img>);
+    //   output.push(<img src={"./nostar.png"} id="stars" key = {Math.floor(Math.random() * 9999)}></img>);
+    // }
     return output
   }
 

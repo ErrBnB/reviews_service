@@ -50,6 +50,7 @@ class Report extends React.Component {
 	}
 
 	popUp(event) {
+		console.log(event);
 		this.setState({
 			modal : {
 				display : 'block'
@@ -88,7 +89,7 @@ class Report extends React.Component {
 
   render() {
     return (
-			<div>
+			<div style = {{display : 'inline'}}>
 				<button id="myBtn" ><img src="./reportBtn.png" alt="my image" onClick = {this.popUp}/></button>
 				<div id="myModal" className = "modal" style = {this.state.modal}>
 					<div className = "modalContent" style = {this.state.modalContent}>

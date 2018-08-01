@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import AverageScore from './AverageScore.jsx';
 import Review from './Review.jsx';
+import Search from './Search.jsx';
 
 
 class App extends React.Component {
@@ -22,10 +23,11 @@ class App extends React.Component {
     this.handleButtonForward = this.handleButtonForward.bind(this);
     this.getOnePage = this.getOnePage.bind(this);
     this.getOnePage();
+    this.searchWord = this.searchWord.bind(this);
   }
 
   getOnePage() {
-    axios.get(`/api/reviews/100`)
+    axios.get('/api/reviews/100')
       // .then(results => console.log('1', results.data[0]['name']))
       .then((results) => {
         this.setState({
@@ -110,23 +112,23 @@ class App extends React.Component {
     if (totalPage < 6) {
       output.push(<input key = {Math.random() * 99999} type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = ">" onClick={()=>this.handleButtonForward(this.state.currentPage)}></input>);
     }
-    else if (e == this.state.totalPage) {
-    } else if (e == (totalPage - 1)) {
+    else if (e === this.state.totalPage) {
+    } else if (e === (totalPage - 1)) {
       output.push(<input key = {Math.random() * 99999} type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = {this.state.currentPage + 1} onClick={()=>this.gotoPage(this.state.currentPage + 1)}></input>)
       output.push(<input key = {Math.random() * 99999} type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = ">" onClick={()=>this.handleButtonForward(this.state.currentPage)}></input>);
-    } else if (e == (totalPage - 2)) {
+    } else if (e === (totalPage - 2)) {
       output.push(<input key = {Math.random() * 99999} type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = {this.state.currentPage + 1} onClick={()=>this.gotoPage(this.state.currentPage + 1)}></input>)
       output.push(<input key = {Math.random() * 99999} type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = {this.state.currentPage + 2} onClick={()=>this.gotoPage(this.state.currentPage + 2)}></input>)
       output.push(<input key = {Math.random() * 99999} type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = ">" onClick={()=>this.handleButtonForward(this.state.currentPage)}></input>);
-    } else if (e == (totalPage - 3)) {
+    } else if (e === (totalPage - 3)) {
       output.push(<input key = {Math.random() * 99999} type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = {this.state.currentPage + 1} onClick={()=>this.gotoPage(this.state.currentPage + 1)}></input>)
       output.push(<input key = {Math.random() * 99999} type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = {this.state.currentPage + 2} onClick={()=>this.gotoPage(this.state.currentPage + 2)}></input>)
       output.push(<input key = {Math.random() * 99999} type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = {this.state.currentPage + 3} onClick={()=>this.gotoPage(this.state.currentPage + 3)}></input>)
       output.push(<input key = {Math.random() * 99999} type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = ">" onClick={()=>this.handleButtonForward(this.state.currentPage)}></input>);
-    } else if (e == 1) {
+    } else if (e === 1) {
       output.push(<input key = {Math.random() * 99999} type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = "2" onClick={()=>this.gotoPage(2)}></input>)
       output.push(<input key = {Math.random() * 99999} type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = "3" onClick={()=>this.gotoPage(3)}></input>)
-      output.push(<p key = {Math.random() * 99999} className = 'omit'>...</p>)
+      output.push(<p key={Math.random() * 99999} className = 'omit'>...</p>)
       output.push(<input key = {Math.random() * 99999} type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = {this.state.totalPage} onClick={()=>this.gotoPage(this.state.totalPage)}></input>)
       output.push(<input key = {Math.random() * 99999} type = "button" className = 'changePageBtn' id = {this.state.currentPage} value = ">" onClick={()=>this.handleButtonForward(this.state.currentPage)}></input>);
     } else {
@@ -138,12 +140,30 @@ class App extends React.Component {
     return output;
   }
 
+  searchWord(e) {
+
+    let output = [];
+    const totalReview = this.state.totalReview;
+    for (let i = 0; i < totalReview.length; i++) {      
+      if (totalReview[i].review.search(' ' + e.toString() + ' ') >= 0) {
+        output.push(totalReview[i])
+      }
+    }
+    this.setState({
+      totalReview: output,
+      totalPage: Math.ceil(output.length / 7),
+      currentReview: output.slice(0, 7),
+    })
+    
+    console.log(output);
+  }
+
   render() {
     return (
       <div>
         {/* <p>{this.state.currentReview[0].review}</p> */}
         <div>
-          <h2> Search Reviews</h2>
+          <Search searchWord = {this.searchWord} total = {this.state.totalReview}/>
           <AverageScore total = {this.state.totalReview} />
           <Review expanded = {this.state.expanded} buttonTxt = {this.state.buttonTxt} 
           hidden = {this.state.hidden}

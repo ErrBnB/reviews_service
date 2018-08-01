@@ -17,7 +17,7 @@ const dateGenerator = (i) => {
 // 		output.value,
 // ];
 
-for (let i = 0; i < 2000; i += 1) {
+for (let i = 0; i < 20000; i += 1) {
 	dataSet[i] = {};
 	dataSet[i].item = Math.ceil(Math.random() * 100);
 	dataSet[i].name = faker.name.findName();

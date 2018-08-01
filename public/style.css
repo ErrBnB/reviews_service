@@ -11,7 +11,7 @@
 #avatar {
   width: 48px !important;
   height: 48px !important;
-  position: absolute !important;
+  /* position: absolute !important; */
   /* top: 0px !important; */
   left: 0px !important;
   border-radius: 24px !important;
@@ -19,8 +19,8 @@
 }
 
 #name {
-  posiiton: absolute;
-  left: 150px;
+  
+  left: 1050px;
   font-weight: 600 !important;
   margin: 0px !important;
   word-wrap: break-word !important;
@@ -32,7 +32,7 @@
   color: #484848 !important;
   padding-top: undefined !important;
   padding-bottom: undefined !important;
-  display: inline !important;
+  display: inline-block !important;
   box-sizing: border-box;
 }
 
@@ -117,10 +117,6 @@
   display: inline-block;
 }
 
-.reviewName {
-  display: inline-block;
-}
-
 
 
 /* report pop up window */
@@ -174,4 +170,34 @@
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+#myBtn {
+  margin-left: auto;
+  font-family:inherit;  
+  font-size:100%;
+  margin:0;
+  line-height:normal;
+  text-transform:none;
+  -webkit-appearance:button;
+  cursor:pointer;
+  border:0;
+  padding:0;
+}
+
+
+/* search */
+
+#searchBtn {
+  height:1em;
+  width:1em;
+  display:block;
+  fill:currentColor;
+}
+
+#searchClose {
+  height: 12px; 
+  width: 12px; 
+  display: block; 
+  fill: currentcolor;
 }
