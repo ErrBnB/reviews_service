@@ -2,6 +2,9 @@ import axios from 'axios';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import Search from './Search.jsx';
+
+
 // import halfStar from '../public/halfstar.png';
 // import fullstar from '../public/fullstar.png';
 // import nostar from '../public/nostar.png';
@@ -11,14 +14,14 @@ class AverageScore extends React.Component {
     super(props);
 
     this.state = {
-      amountReview: 'Not Available',
-      overallAccuracy : 'Not Available',
-      overallCommunication : 'Not Available',
-      overallCleanliness : 'Not Available',
-      overallLocation : 'Not Available',
-      overallCheckin : 'Not Available',
-      overallValue : 'Not Available',
-      overallScore: 'Not Available'	
+      amountReview: 0,
+      overallAccuracy : 0,
+      overallCommunication : 0,
+      overallCleanliness : 0,
+      overallLocation : 0,
+      overallCheckin : 0,
+      overallValue : 0,
+      overallScore: 0	
     };	
     this.handleAmount = this.handleAmount.bind(this);
     this.calculateAccuracy = this.calculateAccuracy.bind(this);
@@ -26,7 +29,6 @@ class AverageScore extends React.Component {
   }
 
   calculateStar(rate) {
-    console.log('CaLcUlAtE star ', rate)
     let output = [];
     let count = 0;
     while (count < 5) {
@@ -118,15 +120,31 @@ class AverageScore extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1 id = "mainStar">{this.props.total.length && this.calculateStar(this.calculateTotal())} stars</h1>
-        <h1 id = "mainReview">{this.props.total.length} Reviews</h1>
-        <p>Accuracy: {this.props.total.length && this.calculateStar(this.calculateAccuracy())}
-          Location: {this.props.total.length && this.calculateStar(this.calculateLocation())}</p>
-        <p>Communication: {this.props.total.length && this.calculateStar(this.calculateCommunication())}
-          Checkin: {this.props.total.length && this.calculateStar(this.calculateCheckin())}</p>
-        <p>Cleanliness: {this.props.total.length && this.calculateStar(this.calculateCleanliness())}
-          Value: {this.props.total.length && this.calculateStar(this.calculateValue())}</p>
+      <div style = {{paddingBottom: "16px"}}>
+        <div style = {{paddingBottom: "24px"}}>
+          <div id = "mainReview" style = {{display: 'inline', paddingRight: "20px"}}>{this.props.total.length} Reviews</div>
+          <div id = "mainStar" style = {{display: 'inline'}}>{this.props.total.length && this.calculateStar(this.calculateTotal())}</div>
+          <Search style = {{display: 'inline'}} searchWord = {this.props.searchWord} total = {this.state.totalReview}/>
+        </div>
+        <div id = 'reviewPrompt' style = {{marginTop: '16px', marginBottom: '16px'}}></div>
+        <div>
+          <p style = {{display: 'inline', paddingRight: "110px"}}>Accuracy     </p>
+          <p style = {{display: 'inline', paddingRight: "30px"}}>{this.props.total.length && this.calculateStar(this.calculateAccuracy())}</p>
+          <p style = {{display: 'inline', paddingRight: "100px"}}>Location     </p>
+          <p style = {{display: 'inline'}}>{this.props.total.length && this.calculateStar(this.calculateLocation())}</p>
+        </div>
+        <div>  
+          <p style = {{display: 'inline', paddingRight: "72px"}}>Communication</p>
+          <p style = {{display: 'inline', paddingRight: "30px"}}>{this.props.total.length && this.calculateStar(this.calculateCommunication())}</p>
+          <p style = {{display: 'inline', paddingRight: "106px"}}>Checkin      </p>
+          <p style = {{display: 'inline'}}>{this.props.total.length && this.calculateStar(this.calculateCheckin())}</p>
+        </div>
+        <div>
+          <p style = {{display: 'inline', paddingRight: "98px"}}>Cleanliness  </p>
+          <p style = {{display: 'inline', paddingRight: "30px"}}>{this.props.total.length && this.calculateStar(this.calculateCleanliness())}</p>
+          <p style = {{display: 'inline', paddingRight: "120px"}}>Value        </p>
+          <p style = {{display: 'inline'}}>{this.props.total.length && this.calculateStar(this.calculateValue())}</p>
+        </div>
       </div>
     )
   }

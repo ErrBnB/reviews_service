@@ -153,6 +153,7 @@ class App extends React.Component {
       totalReview: output,
       totalPage: Math.ceil(output.length / 7),
       currentReview: output.slice(0, 7),
+      currentPage: 1
     })
     
     console.log(output);
@@ -163,8 +164,7 @@ class App extends React.Component {
       <div>
         {/* <p>{this.state.currentReview[0].review}</p> */}
         <div>
-          <Search searchWord = {this.searchWord} total = {this.state.totalReview}/>
-          <AverageScore total = {this.state.totalReview} />
+          <AverageScore total = {this.state.totalReview} searchWord = {this.searchWord}/>
           <Review expanded = {this.state.expanded} buttonTxt = {this.state.buttonTxt} 
           hidden = {this.state.hidden}
           total = {this.state.totalReview} current = {this.state.currentReview} 

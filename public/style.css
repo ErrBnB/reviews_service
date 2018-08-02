@@ -1,11 +1,22 @@
+.page {
+  width: 75%;
+  margin-left: 12.5%;
+  margin-right: 12.5%;
+  height: 100%;
+}
+
 #stars {
-  max-width:36px;
-  max-height:36px;
+  max-width:26px;
+  max-height:26px;
   display: inline-block;
 }
 
 #mainReview {
   display: inline-block;
+  text-rendering: optimizelegibility;
+  word-wrap: break-word !important;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+  font-size: 1.5em !important;
 }
 
 #avatar {
@@ -16,6 +27,13 @@
   left: 0px !important;
   border-radius: 24px !important;
   box-sizing: border-box;
+}
+
+#reviewPrompt {
+  font-size:16px!important;
+  font-family:Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif!important;
+  color:#484848!important;
+  font-weight:normal!important;
 }
 
 #name {
@@ -188,11 +206,21 @@
 
 /* search */
 
+
+._18ah1a8i {
+  float: right;
+  position: absolute;
+  display: inline;
+}
+
 #searchBtn {
   height:1em;
   width:1em;
   display:block;
   fill:currentColor;
+  float: right;
+  position: absolute;
+  display: inline;
 }
 
 #searchClose {
@@ -200,4 +228,46 @@
   width: 12px; 
   display: block; 
   fill: currentcolor;
+  float: right;  
+  display: inline;
 }
+
+/*! CSS Used from: Embedded */
+._11k3muyn{
+ float: right;
+
+}
+ ._ncmdki{
+ float:left!important;
+}
+
+
+
+._x1eveb2:focus{
+ outline:none!important;
+}
+/*
+._x1eveb2::-ms-clear{
+ display:none!important;
+}
+._x1eveb2::-webkit-input-placeholder{
+ color:#767676!important;
+ opacity:1!important;
+}
+._x1eveb2::-moz-placeholder{
+ color:#767676!important;
+ opacity:1!important;
+}
+._x1eveb2:-moz-placeholder{
+ color:#767676!important;
+ opacity:1!important;
+}
+._x1eveb2:-ms-input-placeholder{
+ color:#767676!important;
+ opacity:1!important;
+}
+._x1eveb2::placeholder{
+ color:#767676!important;
+ opacity:1!important;
+}
+/*! CSS Used fontfaces */

@@ -8,7 +8,7 @@ class Review extends React.Component {
 
   render(props) {
     return (
-      <div>
+      <div id = "gridReview">
         {this.props.total.length && this.props.current.map((reviewEntry) => (
           <ReviewItem key = {reviewEntry.name.toString() + Math.floor(Math.random() * 9999)} reviewEntry= {reviewEntry}/>
         ))}

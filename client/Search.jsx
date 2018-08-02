@@ -46,7 +46,7 @@ class Search extends React.Component {
         </div>
         <div className="_178faes">
           <form className="searchField" onSubmit = {this.search}>
-            <input type="text" className="_x1eveb2" id="p3-ReviewsSearchBox" name="p3-ReviewsSearchBox" placeholder="Search reviews" value={this.state.searchTerm} onChange={this.handleChange} />            
+            <input type="text" className="_x1eveb2" id="p3-ReviewsSearchBox" name="p3-ReviewsSearchBox" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Search reviews" value={this.state.searchTerm} onChange={this.handleChange} />            
             <div data-veloute="undefined__clearButton" className="_1cyay8zu">
               <div className="_q2vo16">
                 <button className="_18ah1a8i" type="button">
